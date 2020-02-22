@@ -24,20 +24,29 @@ with open(budget_csv) as budget_file:
         net_revenue += int(row[1])
 
         if total_months > 1:
-            monthly_change.append(int(row[1]) - abs(last_month))
+            change = int(row[1]) - last_month
+            monthly_change.append(change)
+
+            if change > greatest_increase:
+                greatest_increase = change
+                greatest_increase_date = row[0]
+
+            if change < greatest_decrease:
+                greatest_decrease = change
+                greatest_decrease_date = row[0]
 
         last_month = int(row[1])
 
-        if greatest_increase < int(row[1]):
-            greatest_increase = int(row[1])
-            greatest_increase_date = row[0]
+        # if greatest_increase < int(row[1]):
+        #    greatest_increase = int(row[1])
+        #    greatest_increase_date = row[0]
 
-        if greatest_decrease > int(row[1]):
-            greatest_decrease = int(row[1])
-            greatest_decrease_date = row[0]
+        # if greatest_decrease > int(row[1]):
+        #    greatest_decrease = int(row[1])
+        #    greatest_decrease_date = row[0]
 
     # print(monthly_change)
-    average_change = sum(monthly_change)/total_months
+    average_change = sum(monthly_change)/(total_months - 1)
 
     print("Financial Analysis")
     print("----------------------------")
