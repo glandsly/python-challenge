@@ -27,16 +27,15 @@ with open(budget_csv) as budget_file:
             monthly_change.append(int(row[1]) - abs(last_month))
 
         last_month = int(row[1])
-        
+
         if greatest_increase < int(row[1]):
             greatest_increase = int(row[1])
             greatest_increase_date = row[0]
-        
+
         if greatest_decrease > int(row[1]):
             greatest_decrease = int(row[1])
             greatest_decrease_date = row[0]
 
-    
     # print(monthly_change)
     average_change = sum(monthly_change)/total_months
 
