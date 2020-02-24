@@ -1,6 +1,12 @@
 import os
 import csv
 
+def print_output(output):
+
+    with open('output.txt', 'a') as outfile:
+        print(output)
+        print(output, file=outfile)
+
 budget_csv = os.path.join("..", "PyBank", "budget_data.csv")
 
 total_months = 0
@@ -39,10 +45,14 @@ with open(budget_csv) as budget_file:
 
     average_change = sum(monthly_change)/(total_months - 1)
 
-    print("Financial Analysis")
-    print("----------------------------")
-    print(f"Total Months: {total_months}")
-    print(f"Total: {net_revenue}")
-    print(f"Average  Change: {average_change}")
-    print(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increase})")
-    print(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease})")
+with open('output.txt', 'w') as output:
+
+    print_output("Financial Analysis")
+    print_output("----------------------------")
+    print_output(f"Total Months: {total_months}")
+    print_output(f"Total: {net_revenue}")
+    print_output(f"Average  Change: {average_change}")
+    print_output(f"Greatest Increase in Profits: {greatest_increase_date} ({greatest_increase})")
+    print_output(f"Greatest Decrease in Profits: {greatest_decrease_date} ({greatest_decrease})")
+
+
